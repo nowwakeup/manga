@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	
+<link rel="preconnect" href="https://maxcdn.bootstrapcdn.com"/>
+<link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com" />
+
+<link rel="preconnect" href="https://code.jquery.com"/>
+<link rel="dns-prefetch" href="https://code.jquery.com" />
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+
+<link rel="preconnect" href="https://s.wordsolver.net" crossorigin/>
+<link rel="preconnect" href="https://s.wordsolver.net" />
+<link rel="dns-prefetch" href="https://s.wordsolver.net" />
+
+<link rel="preload" as="style" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+<link rel="preload" as="style" href="static/main.20230802.1032.min.css"/>
+
+<link rel="preload" as="script" href="https://code.jquery.com/jquery-3.3.1.min.js"/>
+<link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"/>
+<link rel="preload" as="script" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"/>
+<link rel="preload" as="script" href="static/pages.20230802.1032.min.js"/>
+
+<link rel="preload" as="font" href="https://s.wordsolver.net/font/Marvin-webfont.woff2" type="font/woff2" crossorigin />
+	<meta name="description" content="WordSolver makes words from letters and helps with anagram word games such as scrabble, words with friends, draw something.">
+	<meta name="keywords" content="Wordsolver scrabble anagram words with friends boggle draw something wordladder">
+	
+	<title>WordSolver | Make Words with Letters!</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
+
+	<meta property="og:type" content="website"/>
+	<meta property="fb:app_id" content="181843768551747"/>
+	<meta property="og:site_name" content="WordSolver.net"/>
+	<meta property="og:image" content="https://s.wordsolver.net/img/wordsolver-machine-2x.png"/> 
+
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="apple-touch-icon" href="https://s.wordsolver.net/img/apple-touch-icon-180x180.png" />
+	<link rel="icon" sizes="180x180" href="https://s.wordsolver.net/img/apple-touch-icon-180x180.png" />
+
+	<noscript>
+		<div id='noscript_padding'></div>
+	</noscript>	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css"/>
+	<link href="static/main.20230802.1032.min.css" rel="stylesheet" type="text/css" />
+	<meta property="og:title" content="WordSolver | Make Words with Letters!"/>
+	<meta property="og:description" content="WordSolver"/>
+	<meta property="og:url" content="https://wordsolver.net"/>
+
+<script async src="https://cdn.fuseplatform.net/publift/tags/2/2015/fuse.js"></script>
+</head>
+<body>
+
+<div id="sunbeam"></div>
+  
+<div id="fpMain" class="fixHeight100">   
+
+	<!-- title & subtitle --> 
+	<div id="fpTitle" class="row">
+		<div class="col col-md-10 offset-md-1 col-xl-8 offset-xl-2">
+			<a href="https://wordsolver.net/#!" target="_top">
+				<div class="fillContainerToLongEdge titleimg"></div>
+			</a>
+		</div>
+	</div> 
+	<div class="row">
+		<div class="subtitle col"> 
+			Make Words with Letters!
+		</div>
+	</div>
+
+		<!-- Loading -->
+		<div id="fpLoading" class="whileLoading row">
+			<div class="col col-md-10 offset-md-1 col-xl-8 offset-xl-2">
+				<div class="container">
+					<div class="row">
+						<div id="loadinglabel" class="col-7 marvin">Loading...</div>
+						<div id="sw_morewordsloader" class="col-5">
+							<div class="sk-folding-cube">
+								<div class="sk-cube1 sk-cube"></div>
+								<div class="sk-cube2 sk-cube"></div>
+								<div class="sk-cube4 sk-cube"></div>
+								<div class="sk-cube3 sk-cube"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- query form -->
+	<div id="fpQuery" class="row onceLoaded" style="display:none;">
+		<div class="col col-md-10 offset-md-1 col-xl-8 offset-xl-2">
+			<div id="fpForm" class="container">
+				<div class="row">
+					<div id="gridviewer"><table></table></div>
+				</div>
+				<div class="row">
+					<div id="textInputGroup" class="input-group shadowWithHover">
+						<input class="form-control" id="searchinputtext" type="text" placeholder="LETT?RS" name="s" size="20" maxlength="36"  autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false"/>
+						<span class="input-group-btn">
+							<button class="btn btn-large btn-primary" id="searchbutton" type="button">GO!</button>
+						</span>
+					</div> 
+				</div>
+				<div class="row">
+					<div id="front_gridview" class="col">	
+						<p id="front_lettercounter"></p>
+					</div>
+				</div>
+
+				<div class="row options">
+					<div class="col-6 offset-3 centered">
+						<button class="btn marvin btn-optional shadowWithHover" id="optionsbutton" data-toggle="button">Options</button>
+					</div>
+				</div>
+					
+				<div id="optionspanel" class="row well fullwidthrow-2 hidden shadow">
+						
+					<!-- searchtype -->
+					<div class="container" id="searchtypeselector">
+						<div class="control-group row">
+							<div class="col-6 optionslabel">Search Type</div>
+							<div class="btn-group col-6">
+								<button id="searchtypebutton" type="button" class="btn btn-info btn-sm dropdown-toggle fullwidth shadowWithHover" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Auto
+								</button>
+								<div class="dropdown-menu shadowWithHover" aria-labelledby="searchtypebutton">
+									<a class="dropdown-item dicsel specdic filteropt nogridview maxlength active" href="#" id="st_auto">Auto</a>
+									<a class="dropdown-item dicsel specdic filteropt nogridview maxlength" href="#" id="st_anagram">Anagram</a>
+									<a class="dropdown-item dicsel nospecdic nofilteropt gridview nomaxlength" href="#" id="st_grid">Grid</a>
+									<a class="dropdown-item dicsel nospecdic nofilteropt nogridview nomaxlength" href="#" id="st_ladder">WordLadder</a>
+									<a class="dropdown-item nodicsel nofilteropt nogridview nomaxlength" href="#"  id="st_crossword">Crossword</a>
+								</div>
+							</div>
+						</div>
+					</div>
+						
+					<!-- dictionary select -->
+					<div class="container" id="dictionaryselector">
+						<div class="control-group row">
+							<div class="col-6 optionslabel">Dictionary</div>
+							<div class="btn-group col-6">
+								<button id="dicselectbutton" type="button" class="btn btn-info btn-sm dropdown-toggle fullwidth shadowWithHover" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									US English
+								</button>
+								<div class="dropdown-menu shadowWithHover" aria-labelledby="dicselectbutton">
+									<a class="dropdown-item active" href="#" id="d_twl">US English</a>
+									<a class="dropdown-item" href="#" id="d_sowpods">English</a>
+									<a class="dropdown-item specialised" href="#" id="d_wwf">WWF</a>
+									<a class="dropdown-item specialised" href="#" id="d_ds">Drawsthing</a>
+									<a class="dropdown-item specialised" href="#" id="d_4p1w">4p1w</a>
+									<a class="dropdown-item" href="#" id="d_french">French</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Max Length -->					
+					<div class="container" id="maxlengthselector">
+						<div class="control-group row">
+							<div class="optionslabel col-6">Max Length</div>
+							<div class="btn-group col-6">
+								<button id="maxlength" class="btn btn-info btn-sm dropdown-toggle fullwidth shadowWithHover" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									15
+								</button>
+								<div class="dropdown-menu shadowWithHover" aria-labelledby="maxlength">
+									<a class="dropdown-item" href="#">2</a>
+									<a class="dropdown-item" href="#">3</a>
+									<a class="dropdown-item" href="#">4</a>
+									<a class="dropdown-item" href="#">5</a>
+									<a class="dropdown-item" href="#">6</a>
+									<a class="dropdown-item" href="#">7</a>
+									<a class="dropdown-item" href="#">8</a>
+									<a class="dropdown-item" href="#">9</a>
+									<a class="dropdown-item" href="#">10</a>
+									<a class="dropdown-item" href="#">11</a>
+									<a class="dropdown-item" href="#">12</a>
+									<a class="dropdown-item" href="#">13</a>
+									<a class="dropdown-item" href="#">14</a>
+									<a class="dropdown-item active" href="#">15</a>
+								</div>
+							</div>
+						</div>
+					</div>
+								
+					<!-- filter div-->
+					<div class="container" id="front_filterdiv">
+
+						<!-- filter type-->
+						<div class="control-group row" id="filterselector">
+							<div class="optionslabel col-6">Filter</div>
+							<div class="btn-group col-6">
+								<button id="filterselect" class="btn btn-info btn-sm dropdown-toggle fullwidth shadowWithHover" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									No Filter
+								</button>
+								<div class="dropdown-menu shadowWithHover" aria-labelledby="filterselect">
+									<a class="dropdown-item nofilter active" id="f_none" href="#">No Filter</a>
+									<a class="dropdown-item filter postFocusOnFilterText" id="f_starts" href="#">Starts</a>
+									<a class="dropdown-item filter postFocusOnFilterText" id="f_contains" href="#">Contains</a>
+									<a class="dropdown-item filter postFocusOnFilterText" id="f_ends" href="#">Ends</a>
+									<a class="dropdown-item filter postFocusOnFilterText" id="f_pattern" href="#">Pattern</a>
+								</div>
+							</div>   
+						</div>
+  
+						<!-- filter input-->
+						<div class="row hidden" id="filterinputdiv">
+							<div class="offset-6 col-6">
+								<input id="filterinput" class="fullwidth roundedcorners shadowWithHover" type="text" placeholder="" name="filter" size="8" maxlength="15" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false"/>
+							</div>
+						</div>
+					</div>
+				</div> 
+			</div>
+		</div> 
+	</div> 
+
+	<!-- 71161633/home_hrec_1/home_hrec_1 -->
+	<div id="indexadspacer"></div>
+	<div class="adembed_front" data-fuse="21914315395"></div> 
+</div> 
+
+<div class="clearfix"></div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="helpmodal" tabindex="-1" role="dialog" aria-labelledby="helpmodallabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="helpmodallabel">Help</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div id="helpmodalbody" class="modal-body"></div>
+			<div class="modal-footer">
+				<button id="nexthelp" type="button" class="btn btn-secondary" onclick="launchHelp();">Next: </button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+  
+<div id="wsfooter">
+	<div class="container">
+
+		<div class="center" id="fblikewrap">
+			<div class="fb-like shadow frontlink" data-href="https://wordsolver.net" data-layout="button_count" data-action="recommend" data-size="large" data-show-faces="false" data-share="false"></div>
+		</div>
+
+		<div class="center">
+			<button class="btn marvin btn-primary shadowWithHover frontlink helpbutton footerbutton marginleftzero" data-toggle="button">Help</button>
+			<button class="btn marvin btn-primary shadowWithHover frontlink footerbutton marginrightzero" data-toggle="button" onclick="window.location='wordlists'">Word Lists</button>
+		</div>
+		
+		<div class="indexgap" style="text-align: center; margin-top: 8px;">
+			<button id="ToggleStyle" type="button" class="btn btn-primary marvin" data-toggle="button" aria-pressed="false" autocomplete="off">Old Style</button>
+		</div>
+
+		<div>WordSolver was originally written as a tool to help solve back-of-the-newspaper anagram-type word puzzles, but its application is quite wide across many games including online word games like scrabble.  Not only is wordsolver a scrabble solver, but it can unscramble letters for many anagram games such as words with friends, draw something, 4 pics 1 word too.  It also opens up the possibility of playing pro-level games of scrabble where all the players use Wordsolver to assist in finding words, but use skill in working out where to play the words on the scrabble board and deciding which letters to retain.  Great fun!</div>
+		<div id="wsfootermap">
+			<ul>
+				<li><a href="/#!">Wordsolver</a></li>
+				<li><a href="/wordlists#!dic=d_sowpods&wl=wl_2lw">2 letter words</a></li>
+				<li><a href="/wordlists#!dic=d_sowpods&wl=wl_3lw">3 letter words</a></li>
+				<li><a href="/wordlists#!dic=d_sowpods&wl=wl_4lw">4 letter words</a></li>
+				<li><a href="/wordlists#!dic=d_sowpods&wl=wl_ac&ml=15">All consonant words</a></li>
+				<li><a href="/wordlists#!dic=d_sowpods&wl=wl_acwov&ml=15">One vowel words</a></li>
+				<li><a href="/wordlists#!dic=d_sowpods&wl=wl_avwoc&ml=15">One consonant words</a></li>
+				<li><a href="/wordlists#!dic=d_sowpods&wl=wl_av&ml=15">All vowel words</a></li>
+				<li><a href="/wordlists#!dic=d_sowpods&wl=wl_qwu&ml=15">Words that have a Q without U</a></li>
+				<li>Words starting <a href="/wordlists#!dic=d_sowpods&wl=wl_swde&ml=15">DE</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_swre&ml=15">RE</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_swun&ml=15">UN</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_swx&ml=15">X</a>;
+				</li>
+				<li>Words ending <a href="/wordlists#!dic=d_sowpods&wl=wl_ewest&ml=15">EST</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_ewing&ml=15">ING</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_ewj&ml=15">J</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_ewness&ml=15">NESS</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_ewq&ml=15">Q</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_ewted&ml=15">TED</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_ewv&ml=15">V</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_ewx&ml=15">X</a>, <span class="touchagap">&nbsp;</span>
+					<a href="/wordlists#!dic=d_sowpods&wl=wl_ewz&ml=15">Z</a>;
+				</li>
+			</ul>
+		</div>		<div class="clearfix"></div>
+		<p>This website uses Cookies.  For more information please see our <a href="privacypolicy">Privacy Policy</a>.</p> 
+		<div id="publisherad">
+			To advertise with us, you can contact our friends at Publift by <a href="https://www.publift.com/advertise-home" target="_blank">visiting their page</a> or <a href="mailto:campaigns@publift.com" target="_blank">emailing Publift</a> directly to assist you.
+		</div>
+		<div class="clearfix"><br/></div>
+		<p>Build 20230802.1032, contact: admin at wordsolver.net<br/>WORDSOLVER is a registered trademark.</p>
+	</div>
+</div>
+<div class="clearfix"></div>
+<div class="d-none"></div>
+
+<noscript>
+	<div id='noscript_warning'>Please enable javascript and then refresh the page to use this site.</div>
+</noscript><!-- Bootstrap CSS Fallback -->
+<script>
+	var canaries = document.getElementsByClassName("d-none");
+	if (canaries.length > 0 && canaries[0].offsetParent != null) {
+		document.head.innerHTML = "<link rel='stylesheet' href='https://s.wordsolver.net/lib/bootstrap.min.css' type='text/css'>" + document.head.innerHTML;
+	}
+</script>
+		
+<!-- jquery  integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"  -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://s.wordsolver.net/lib/jquery-3.3.1.min.js"><\/script>');</script>
+
+<!-- popper integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script>window.Popper || document.write('<script src="https://s.wordsolver.net/lib/popper.min.js"><\/script>')</script>
+
+<!-- bootstrap integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>$.fn.modal || document.write('<script src="https://s.wordsolver.net/lib/bootstrap.min.js"><\/script>')</script>
+
+<!-- app -->
+<script src="static/pages.20230802.1032.min.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C9X3KJ3J5M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-C9X3KJ3J5M');
+</script>
+
+
+<!-- fb -->
+<script>
+window.fbAsyncInit = function() {
+	FB.init({
+	appId            : '181843768551747',
+	autoLogAppEvents : false,
+	xfbml            : true,
+	version          : 'v3.0'
+	});
+};
+
+(function(d, s, id){
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {return;}
+	js = d.createElement(s); js.id = id;
+	js.src = "https://connect.facebook.net/en_US/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+</html> 
